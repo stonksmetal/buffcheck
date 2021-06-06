@@ -1,14 +1,17 @@
 <title>Home</title>
-
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
 <body>
   <h2 id="title">Whatever</h2>
   <p id="serverResponse"></p>
 
-  <button onclick="sendit()" type="button" name="button">fuckoff</button>
+  <button onclick="sendit()" type="button" name="button">send to PHP</button>
+  <button onclick="getData()" type="button" name="button">API test</button>
 </body>
 
+<script src="calculate.js"></script>
 <script type="text/javascript">
-
 function sendit(){
   const yourArray = ['string0', 'string1', 'string2'];
   const xhr = new XMLHttpRequest();
