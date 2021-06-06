@@ -1,0 +1,28 @@
+<title>Home</title>
+
+<body>
+  <h2 id="title">Whatever</h2>
+  <p id="serverResponse"></p>
+
+  <button onclick="sendit()" type="button" name="button">fuckoff</button>
+</body>
+
+<script type="text/javascript">
+
+function sendit(){
+  const yourArray = ['string0', 'string1', 'string2'];
+  const xhr = new XMLHttpRequest();
+
+  xhr.onload = function(){
+    const serverResponse = document.getElementById("serverResponse");
+      serverResponse.innerHTML = this.responseText;
+    console.log(this.responseText);
+  };
+
+  xhr.open("POST","test.php");
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+//  xhr.send("name=test&message=fuckyou&bla=blub");
+const data = JSON.stringify(yourArray)
+xhr.send("data="+data);
+}
+</script>
