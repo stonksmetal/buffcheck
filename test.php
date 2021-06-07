@@ -5,6 +5,7 @@ $data =$_POST['data'];
 $obj = json_decode($data,true);
 //$data = var_dump(json_decode($data));
 print_r($obj);
-echo $obj[0];
+echo gettype($obj);
+//echo $obj[0];
 
  ?>
