@@ -27,7 +27,6 @@ function getData() {
 
      function eachEntry(item,index){
        if( jsonEntries[index][1]["starting_at"]["price"]>10){
-      saveThese[index] = new Array()
       var fullName = item[0];
       var weapon = fullName.split(" | ")[0];
       var skin = fullName.split(" (")[0]; var skin = skin.split("| ")[1];
@@ -35,13 +34,14 @@ function getData() {
       if(typeof condition == "string"){
           var condition = condition.split(")")[0];
           count++;
-        }
-        saveThese[count]
-        =new Array(weapon, skin, condition, jsonEntries[index][1]["starting_at"]["price"], jsonEntries[0][1]["highest_order"]["price"], date );
-        }
-     }//eachentry finished
-      sendit(saveThese);
-  }//success function finished
+                }
+                  saveThese[count]
+                  =new Array(weapon, skin, condition, jsonEntries[index][1]["starting_at"]["price"], jsonEntries[0][1]["highest_order"]["price"], date );
+            }
+          }//eachentry finished
+          sendit(saveThese);
+          console.log()
+        }//success function finished
  			});//ajax end
  		} //ajax end
 
@@ -55,7 +55,7 @@ function getData() {
     xhr.onload = function(){
       const serverResponse = document.getElementById("serverResponse");
         serverResponse.innerHTML = this.responseText;
-      console.log(this.responseText);
+
     };
 
     xhr.open("POST","test.php");
