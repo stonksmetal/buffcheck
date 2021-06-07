@@ -36,7 +36,7 @@ function getData() {
           count++;
                 }
                   saveThese[count]
-                  =new Array(weapon, skin, condition, jsonEntries[index][1]["starting_at"]["price"], jsonEntries[0][1]["highest_order"]["price"], date );
+                  =new Array(weapon, skin, condition, jsonEntries[index][1]["starting_at"]["price"], jsonEntries[index][1]["highest_order"]["price"], date );
             }
           }//eachentry finished
           sendit(saveThese);
