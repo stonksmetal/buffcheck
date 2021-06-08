@@ -3,7 +3,7 @@ var count = 0;
 // var d = new Date();
 // var month = d.getMonth()+1;
 // var date = d.getFullYear()+"-"+month+"-"+d.getDate();
-var date = "2021-6-6";
+var date = "2021-06-07";
 
 function getData() {
  {$.ajax({
@@ -26,15 +26,19 @@ function getData() {
      jsonEntries.forEach(eachEntry);
 
      function eachEntry(item,index){
+
+       //"Sticker | FaZe Clan (Holo) | Boston 2018": ,
+       // "Nova | Hyper Beast (Factory New)": ,
        if( jsonEntries[index][1]["starting_at"]["price"]>10){
       var fullName = item[0];
       var weapon = fullName.split(" | ")[0];
       var skin = fullName.split(" (")[0]; var skin = skin.split("| ")[1];
       var condition = fullName.split(" (")[1];
+      var tournament = "nix";
       if(typeof condition == "string"){
           var condition = condition.split(")")[0];
-          count++;
                 }
+                count++;
                   saveThese[count]
                   =new Array(weapon, skin, condition, jsonEntries[index][1]["starting_at"]["price"], jsonEntries[index][1]["highest_order"]["price"], date );
             }
