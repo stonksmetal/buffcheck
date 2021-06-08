@@ -10,7 +10,7 @@ $obj = json_decode($data,true);
 // echo $obj[1][1];
 //echo $obj[0];
 $insertValues = "" ;
-for ($i=1; $i < 4414 ; $i++) {
+for ($i=1; $i < 4035 ; $i++) {
   $type = $obj[$i][0];
   $name = $obj[$i][1];
   $name = str_replace("'", "", $name);

@@ -3,7 +3,7 @@ var count = 0;
 // var d = new Date();
 // var month = d.getMonth()+1;
 // var date = d.getFullYear()+"-"+month+"-"+d.getDate();
-var date = "2021-6-7";
+var date = "2021-6-6";
 
 function getData() {
  {$.ajax({
@@ -31,7 +31,7 @@ function getData() {
        //"Sticker | FaZe Clan (Holo) | Boston 2018": ,
        // "Nova | Hyper Beast (Factory New)": ,
        if( jsonEntries[index][1]["starting_at"]["price"]>10
-           && item[0].includes("StatTrak") == false && item[0].includes("Patch") == false){
+           && item[0].includes("StatTrak") == false && item[0].includes("Patch") == false && item[0].includes("Souvenir") == false && item[0].includes("Pin") == false  && item[0].includes("Graffiti") == false){
       var fullName = item[0];
       var weapon = fullName.split(" | ")[0];
       if(weapon.includes("Sticker")){
