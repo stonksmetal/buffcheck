@@ -3,7 +3,7 @@ var count = 0;
 // var d = new Date();
 // var month = d.getMonth()+1;
 // var date = d.getFullYear()+"-"+month+"-"+d.getDate();
-var date = "2021-06-07";
+var date = "2021-6-7";
 
 function getData() {
  {$.ajax({
@@ -27,24 +27,30 @@ function getData() {
 
      function eachEntry(item,index){
 
+
        //"Sticker | FaZe Clan (Holo) | Boston 2018": ,
        // "Nova | Hyper Beast (Factory New)": ,
-       if( jsonEntries[index][1]["starting_at"]["price"]>10){
+       if( jsonEntries[index][1]["starting_at"]["price"]>10
+           && item[0].includes("StatTrak") == false && item[0].includes("Patch") == false){
       var fullName = item[0];
       var weapon = fullName.split(" | ")[0];
+      if(weapon.includes("Sticker")){
+        var tournament = fullName.split(" | ")[2];
+        }else{var tournament = "";}
       var skin = fullName.split(" (")[0]; var skin = skin.split("| ")[1];
       var condition = fullName.split(" (")[1];
-      var tournament = "nix";
+
+      //console.log(item[0])
       if(typeof condition == "string"){
           var condition = condition.split(")")[0];
                 }
                 count++;
                   saveThese[count]
-                  =new Array(weapon, skin, condition, jsonEntries[index][1]["starting_at"]["price"], jsonEntries[index][1]["highest_order"]["price"], date );
+                  =new Array(weapon, skin, condition, jsonEntries[index][1]["starting_at"]["price"], jsonEntries[index][1]["highest_order"]["price"],tournament, date );
             }
           }//eachentry finished
           sendit(saveThese);
-          console.log()
+
         }//success function finished
  			});//ajax end
  		} //ajax end

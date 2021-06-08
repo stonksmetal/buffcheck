@@ -10,16 +10,18 @@ $obj = json_decode($data,true);
 // echo $obj[1][1];
 //echo $obj[0];
 $insertValues = "" ;
-for ($i=1; $i < 6199 ; $i++) {
+for ($i=1; $i < 4414 ; $i++) {
   $type = $obj[$i][0];
   $name = $obj[$i][1];
   $name = str_replace("'", "", $name);
   $cond = $obj[$i][2];
   $price = $obj[$i][3];
   $buyorder = $obj[$i][4];
-  $datum = $obj[$i][5];
+  $tournament = $obj[$i][5];
+  $datum = $obj[$i][6];
+
   if(!empty($type)){
-    $insertValues = $insertValues . "('$type','$name','$cond',$price,$buyorder,$datum),";
+    $insertValues = $insertValues . "('$type','$name','$cond',$price,$buyorder,'$tournament','$datum'),";
     //insertData($type, $name, $cond, $price, $buyorder, $datum);
     }
 }
@@ -32,7 +34,7 @@ insertLotofData( $insertValues);
 function insertLotofData( $valueString){
   include "dbcon.php";
 
-  $sql = "INSERT INTO data (`type`, `name`, `cond`, `price`, `buyorder`, `date`)
+  $sql = "INSERT INTO data (`type`, `name`, `cond`, `price`, `buyorder`, `tournament`, `date`)
   VALUES $valueString";
 
   if ($conn->query($sql) === TRUE) {
