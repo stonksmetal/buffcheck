@@ -4,6 +4,7 @@ var count = 0;
 // var month = d.getMonth()+1;
 // var date = d.getFullYear()+"-"+month+"-"+d.getDate();
 var date = "2021-6-6";
+const phases = ["Sapphire","Ruby","Black Pearl", "Emerald", "Phase 1","Phase 2","Phase 3","Phase 4"];
 
 function getData() {
  {$.ajax({
@@ -25,28 +26,52 @@ function getData() {
      const saveThese = [];
      jsonEntries.forEach(eachEntry);
 
-     function eachEntry(item,index){
 
+     function eachEntry(item,index){
 
        //"Sticker | FaZe Clan (Holo) | Boston 2018": ,
        // "Nova | Hyper Beast (Factory New)": ,
-       if( jsonEntries[index][1]["starting_at"]["price"]>10
-           && item[0].includes("StatTrak") == false && item[0].includes("Patch") == false && item[0].includes("Souvenir") == false && item[0].includes("Pin") == false  && item[0].includes("Graffiti") == false){
+  if( jsonEntries[index][1]["starting_at"]["price"]>10
+  && item[0].includes("StatTrak") == false && item[0].includes("Patch") == false && item[0].includes("Souvenir") == false
+  && item[0].includes("Pin") == false  && item[0].includes("Graffiti") == false){
       var fullName = item[0];
       var weapon = fullName.split(" | ")[0];
-      if(weapon.includes("Sticker")){
-        var tournament = fullName.split(" | ")[2];
-        }else{var tournament = "";}
+    if(weapon.includes("Sticker")){
+      var tournament = fullName.split(" | ")[2];
+    }
+    else{
+      var extraInfo = "";
+    }
       var skin = fullName.split(" (")[0]; var skin = skin.split("| ")[1];
       var condition = fullName.split(" (")[1];
+    if(item[0].includes("Doppler") == true){
+      //  var tournament = item[]
+        for (var i = 0; i < phases.length; i++) {
+          //phases[i]
+          var starting = item[1]["starting_at"]["doppler"][phases[i]];
+          var highest =  item[1]["highest_order"]["doppler"][phases[i]];
+          var extraInfo = phases[i];
+          //console.log("starting at: "+starting+ "highest order: "+ highest+"phase: "+extraInfo);
+
+          count++;
+          if(starting != "null"){
+
+            saveThese[count]
+            =new Array(weapon, skin, condition, starting, highest, extraInfo, date );
+          }
+
+        }
+
+
+      }
 
       //console.log(item[0])
-      if(typeof condition == "string"){
+      if(typeof condition == "string" && item[0].includes("Doppler") == false){
           var condition = condition.split(")")[0];
                 }
                 count++;
                   saveThese[count]
-                  =new Array(weapon, skin, condition, jsonEntries[index][1]["starting_at"]["price"], jsonEntries[index][1]["highest_order"]["price"],tournament, date );
+                  =new Array(weapon, skin, condition, jsonEntries[index][1]["starting_at"]["price"], jsonEntries[index][1]["highest_order"]["price"],extraInfo, date );
             }
           }//eachentry finished
           sendit(saveThese);
